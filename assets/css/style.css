@@ -487,6 +487,28 @@ section {
   border: 2px solid #1f5297;
 }
 
+.personnal-info-label {
+  font-weight: bold;font-style: italic;
+}
+.my-section-title h2::after{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 3px;
+  background: #149ddd;
+  bottom: 0;
+  left: 0;
+}
+.my-resume-title {
+  margin-top: 0 !important;
+}
+.my-resume {
+  background: #fff;
+  opacity: 0.7;
+  
+}
+
 /*--------------------------------------------------------------
 # Portfolio
 --------------------------------------------------------------*/
