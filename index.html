@@ -423,7 +423,7 @@
 
         <div class="row" data-aos="fade-in">
 
-          <div class="col-12 d-flex align-items-stretch">
+          <div class="col-lg-5 d-flex align-items-stretch">
             <div class="info">
               <div class="address">
                 <i class="icofont-google-map"></i>
@@ -479,6 +479,39 @@
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div> -->
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form role="form" class="php-email-form">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name <span style="color:red;"> *</span></label>
+                  <input type="text" name="name" class="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div id="name-validate" style="font-size: 0.8rem;font-style: italic;color: red;"></div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Your Email <span style="color:red;"> *</span></label>
+                  <input type="email" class="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div id="email-validate" style="font-size: 0.8rem;font-style: italic;color: red;"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div id="subject-validate" style="font-size: 0.8rem;font-style: italic;color: red;"></div>
+              </div>
+              <div class="form-group">
+                <label for="name">Message <span style="color:red;"> *</span></label>
+                <textarea class="form-control" id="msg" name="message" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
+                <div id="msg-validate" style="font-size: 0.8rem;font-style: italic;color: red;"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="button" onclick="sendMsg()">Send Message</button></div>
+              <!--  -->
+            </form>
+          </div>
 
         </div>
       </div>
@@ -495,6 +528,49 @@
   </footer><!-- End  Footer -->
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <script>
+  let isValidName, isValidEmail, isValidSubject, isValidMsg = false;
+  let name, email, subject, msg;
+
+  function sendMsg() {
+    name = document.getElementById('name').value;
+    email = document.getElementById('email').value;
+    subject = document.getElementById('subject').value;
+    msg = document.getElementById('msg').value;
+
+    validationHandle('name',name);
+    validationHandle('email', email);
+    validationHandle('subject', subject);
+    validationHandle('msg', msg);
+
+    if(isValidName&&isValidEmail&&isValidSubject&&isValidMsg) {
+      console.log('Valid!');
+      let a = document.createElement('a');
+      a.setAttribute('href',`mailto:tpaunggo4238@gmail.com?subject=${subject}&body=${msg}`);
+      a.click();
+    }
+  }
+
+  function validationHandle(targetName, targetData) {
+    !targetData ? setWarningText(`${targetName}`):removeWarningText(`${targetName}`);
+  }
+
+  function setWarningText(targetName) {
+    document.getElementById(`${targetName}-validate`).innerHTML = `<p>${document.getElementById(`${targetName}`).getAttribute('data-msg')}</p>`;
+    setValidValue(targetName, false);
+  }
+
+  function removeWarningText(targetName) {
+    document.getElementById(`${targetName}-validate`).innerHTML = ``;
+    setValidValue(targetName, true);
+  }
+
+  function setValidValue(targetName, result) {
+    targetName==='name'?isValidName=result:(targetName==='email'?isValidEmail=result:(targetName==='subject'?isValidSubject=result:isValidMsg=result));
+  }
+
+  </script>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>
