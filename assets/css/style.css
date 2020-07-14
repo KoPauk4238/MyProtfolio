@@ -216,8 +216,10 @@ my-body {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("https://findingneverlandtravelblog.com/wp-content/uploads/2019/06/Perfect-Travel-Blog.jpg") top center;
+  background: url("../img/my-hero-bg.jpg") top center;
   /* ../img/hero-bg.jpg */
+  /* https://findingneverlandtravelblog.com/wp-content/uploads/2019/06/Perfect-Travel-Blog.jpg */
+
   background-size: cover;
 }
 
